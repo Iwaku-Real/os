@@ -4,9 +4,6 @@
 
 #include <stdint.h>
 
-void set_idt_gate(int n, uint32_t handler);
-void idt_init();
-
 typedef struct {
   uint16_t offsetl;
   uint16_t selector;
@@ -20,7 +17,10 @@ typedef struct {
   uint32_t base;
 } __attribute((packed)) idt_reg_t;
 
-idt_gate_t idt[256];
-idt_reg_t idt_reg;
+extern idt_gate_t idt[256];
+extern idt_reg_t idt_reg;
+
+void set_idt_gate(int n, uint32_t handler);
+void idt_init();
 
 #endif

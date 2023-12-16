@@ -64,40 +64,6 @@ int vga_get_cur(){
   return offset;
 }
 
-/*
-int putchar_at(char c, int col, int row, char attr){
-  uint8_t *vmem = (uint8_t)VGA_MEM_TEXT;
-  int offset = vga_get_cur();
- 
-  if(c == '\n'){
-    row = get_row(offset);
-    offset = get_offset(0, row+1);
-  } else if(c == '\b'){
-    vmem[offset] = 0;
-    vmem[offset+1] = attr;
-  } else {
-    vmem[offset] = c;
-    vmem[offset+1] = attr;
-  }
-
-  // TODO: scroll screen 
-
-  vga_set_cur(offset);
-  return offset;
-}
-
-void puts(char *str){
-  int offset = 0;//vga_get_cur();
-  int row = get_row(offset), col = get_col(offset);
-
-  int i = 0;
-  while(str[i]!=0) {
-    offset = putchar_at(str[i++], col, row, WHITE_ON_BLACK);
-    row = get_row(offset), col = get_col(offset);
-  }
-}
-*/
-
 void puts(char *str, const char attrib){
   vgacell *vmem = (vgacell*)0xb8000;
   char c;
